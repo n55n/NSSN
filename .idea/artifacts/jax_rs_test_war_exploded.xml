@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="nssn:war exploded">
+  <artifact type="exploded-war" name="jax-rs_test:war exploded">
     <output-path>$PROJECT_DIR$/web</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="nssn" />
+          <element id="module-output" name="jax-rs_test" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.mindrot:jbcrypt:0.4" />
@@ -163,7 +163,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/web/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="nssn/web/Web" />
+      <element id="javaee-facet-resources" facet="jax-rs_test/web/Web" />
     </root>
   </artifact>
 </component>
