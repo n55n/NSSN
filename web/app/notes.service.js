@@ -10,8 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var mock_notes_1 = require("./mock-notes");
+var http_1 = require('@angular/http');
 var NotesService = (function () {
-    function NotesService() {
+    function NotesService(http) {
+        this.http = http;
     }
     NotesService.prototype.getNotes = function (notebook) {
         var result = [];
@@ -23,7 +25,7 @@ var NotesService = (function () {
                     result.push(note);
             }
         }
-        return Promise.resolve(result);
+        return;
     };
     NotesService.prototype.getAllNotes = function () {
         return Promise.resolve(mock_notes_1.NOTES);
@@ -47,7 +49,7 @@ var NotesService = (function () {
     };
     NotesService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], NotesService);
     return NotesService;
 }());

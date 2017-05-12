@@ -7,11 +7,12 @@ import {NotesComponent} from "./notes.component";
 import {TextComponent} from "./text.component";
 import {NotebooksService} from "./notebooks.service";
 import {NotesService} from "./notes.service";
-
+import { HttpModule }   from '@angular/http';
 @NgModule({
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,

@@ -17,6 +17,7 @@ var notes_component_1 = require("./notes.component");
 var text_component_1 = require("./text.component");
 var notebooks_service_1 = require("./notebooks.service");
 var notes_service_1 = require("./notes.service");
+var http_1 = require('@angular/http');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,8 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                http_1.HttpModule
             ],
             declarations: [
                 app_component_1.AppComponent,

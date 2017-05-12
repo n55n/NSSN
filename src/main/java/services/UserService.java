@@ -1,14 +1,8 @@
 package services;
 
-import static util.ServiceUtil.*;
-/**
- * Created by denis on 16.02.17.
- */
-
 import models.Notebook;
 import models.User;
 import util.DBHelper;
-import util.ServiceUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +10,14 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.net.URI;
 import java.util.Collections;
 import java.util.Set;
+
+import static util.ServiceUtil.isAccessible;
+
+/**
+ * Created by denis on 16.02.17.
+ */
 
 @Path("/resources/user")
 public class UserService {
@@ -36,9 +34,8 @@ public class UserService {
 
     @GET
     @Produces("application/json")
-    @Path("{id}")
-    public User getUser(@PathParam("id") int id) {
-        return dbHelper.read(id);
+    public User getUser(@Context HttpServletRequest request, @Context HttpServletResponse response) {
+        return dbHelper.read((int) request.getSession().getAttribute("userId"));
     }
 
     @PUT
