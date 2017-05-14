@@ -17,7 +17,7 @@ import java.io.IOException;
  * Created by denis on 11.03.17.
  */
 @Path("/")
-public class  LoginService {
+public class LoginService {
 
 
     /*
@@ -68,8 +68,12 @@ public class  LoginService {
     @GET
     @Path("/logout")
     @Produces("application/json")
-    public Response logout(@Context HttpServletRequest request) {
+    public Response logout(@Context HttpServletRequest request, @Context HttpServletResponse response) {
         HttpSession session = request.getSession();
+        try {
+            response.sendRedirect("/login.html");
+        } catch (Exception e) {
+        }
         session.setAttribute("userId", null);
         session.invalidate();
         return Response.status(Response.Status.OK).build();

@@ -8,15 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var mock_notebooks_1 = require("./mock-notebooks");
+var core_1 = require('@angular/core');
+var mock_notebooks_1 = require('./mock-notebooks');
 var NotebooksService = (function () {
-    function NotebooksService(http) {
-        this.http = http;
+    function NotebooksService() {
     }
     NotebooksService.prototype.getNotebooks = function () {
-        return Promise.resolve(this.http.get("http://localhost:8080/rest/resources/user/1/notebooks"));
+        return Promise.resolve(mock_notebooks_1.NOTEBOOKS);
     };
     NotebooksService.prototype.create = function (notebookName) {
         var notebook = { id: mock_notebooks_1.NOTEBOOKS.length + 1, notebookName: notebookName, noteSet: [] };
@@ -27,7 +25,7 @@ var NotebooksService = (function () {
     };
     NotebooksService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [])
     ], NotebooksService);
     return NotebooksService;
 }());

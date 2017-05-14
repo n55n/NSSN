@@ -8,12 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var mock_notes_1 = require("./mock-notes");
-var http_1 = require('@angular/http');
+var core_1 = require('@angular/core');
+var mock_notes_1 = require('./mock-notes');
 var NotesService = (function () {
-    function NotesService(http) {
-        this.http = http;
+    function NotesService() {
     }
     NotesService.prototype.getNotes = function (notebook) {
         var result = [];
@@ -25,7 +23,7 @@ var NotesService = (function () {
                     result.push(note);
             }
         }
-        return;
+        return Promise.resolve(result);
     };
     NotesService.prototype.getAllNotes = function () {
         return Promise.resolve(mock_notes_1.NOTES);
@@ -49,7 +47,7 @@ var NotesService = (function () {
     };
     NotesService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [])
     ], NotesService);
     return NotesService;
 }());
