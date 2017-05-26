@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var note_1 = require("./note");
 var notes_web_service_1 = require("./notes.web.service");
 var NotesComponent = (function () {
     function NotesComponent(notesService) {
@@ -19,6 +18,7 @@ var NotesComponent = (function () {
         this.editedName = "";
         this.onChangedSelectedNote = new core_1.EventEmitter();
         this.onEdit = new core_1.EventEmitter();
+        this.onCreateQuery = new core_1.EventEmitter();
     }
     NotesComponent.prototype.onSelect = function (note) {
         this.selectedNote = note;
@@ -36,8 +36,9 @@ var NotesComponent = (function () {
     };
     NotesComponent.prototype.create = function () {
         if (this.createdName != "") {
-            this.notesService.create(new note_1.Note());
-            this.onEdit.emit();
+            /*this.notesService.create(new Note(this.createdName))
+                .subscribe((resp:Response) => this.onEdit.emit());*/
+            this.onCreateQuery.emit(this.createdName);
         }
     };
     NotesComponent.prototype.deleteNote = function () {
@@ -68,6 +69,10 @@ var NotesComponent = (function () {
         core_1.Output(), 
         __metadata('design:type', Object)
     ], NotesComponent.prototype, "onEdit", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], NotesComponent.prototype, "onCreateQuery", void 0);
     NotesComponent = __decorate([
         core_1.Component({
             selector: 'notes',

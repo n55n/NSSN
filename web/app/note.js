@@ -1,6 +1,7 @@
 "use strict";
 var Note = (function () {
-    function Note() {
+    function Note(name) {
+        this.noteName = name;
     }
     return Note;
 }());

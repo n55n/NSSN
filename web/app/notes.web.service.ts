@@ -5,6 +5,7 @@ import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Note} from "./note";
 import {Notebook} from "./notebook";
+import {NoteWithNotebook} from "./noteWithNotebook";
 
 @Injectable()
 export class NotesWebService {
@@ -17,7 +18,7 @@ export class NotesWebService {
         return this.http.get(this.url + 'notebook/' + notebook.id + '/notes');
     }
 
-    create(note: Note) {
+    create(note: NoteWithNotebook) {
         const body  = JSON.stringify(note);
         let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
         return this.http.post(this.url + 'note', body, {headers: headers});

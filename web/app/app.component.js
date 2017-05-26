@@ -12,8 +12,16 @@ var core_1 = require("@angular/core");
 var notebooks_component_1 = require("./notebooks.component");
 var notes_component_1 = require("./notes.component");
 var text_component_1 = require("./text.component");
+var user_web_service_1 = require("./user.web.service");
+var notebooks_web_service_1 = require("./notebooks.web.service");
+var notes_web_service_1 = require("./notes.web.service");
+var notebookWithUser_1 = require("./notebookWithUser");
+var noteWithNotebook_1 = require("./noteWithNotebook");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(userService, notebooksService, notesService) {
+        this.userService = userService;
+        this.notebooksService = notebooksService;
+        this.notesService = notesService;
         this.selectedNotebook = undefined;
         this.selectedNote = undefined;
     }
@@ -26,6 +34,16 @@ var AppComponent = (function () {
     AppComponent.prototype.changedSelectedNote = function (note) {
         this.selectedNote = note;
         this.textComponent.setText(this.selectedNote.noteText);
+    };
+    AppComponent.prototype.createNote = function (name) {
+        var _this = this;
+        this.userService.getUser()
+            .subscribe(function (data) {
+            var notebook = new notebookWithUser_1.NotebookWithUser(_this.selectedNotebook.notebookName, data.json());
+            var note = new noteWithNotebook_1.NoteWithNotebook(name, notebook);
+            _this.notesService.create(note)
+                .subscribe(function (resp) { return _this.editedNotes(); });
+        });
     };
     AppComponent.prototype.editedNotes = function () {
         this.notesComponent.uploadNotes(this.selectedNotebook);
@@ -52,10 +70,10 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t\t<div class=\"container\">\n\t\t\t<user></user>\n            <div class=\"row\">\n                <div class=\"col-sm-4\">\n                    <notebooks (onChanged)=\"changedSelectedNotebook($event)\"\n                                               (onEdit)=\"editedNotebooks($event)\"></notebooks>\n                </div>\n    \n                <div class=\"col-sm-4\">\n                    <notes (onChangedSelectedNote)=\"changedSelectedNote($event)\"\n                                                (onEdit)=\"editedNotes($event)\"></notes>\n                </div>\n    \n                <div class=\"col-sm-4 highest\">\n                    <text (onSaved)=\"savedNote($event)\"></text>\n                </div>\n            </div>\n        </div>\n\t",
+            template: "\n\t\t<div class=\"container\">\n\t\t\t<user></user>\n            <div class=\"row\">\n                <div class=\"col-sm-4\">\n                    <notebooks (onChanged)=\"changedSelectedNotebook($event)\"\n                                               (onEdit)=\"editedNotebooks($event)\"></notebooks>\n                </div>\n    \n                <div class=\"col-sm-4\">\n                    <notes (onChangedSelectedNote)=\"changedSelectedNote($event)\"\n                                                (onEdit)=\"editedNotes($event)\"\n                                                (onCreateQuery)=\"createNote($event)\"></notes>\n                </div>\n    \n                <div class=\"col-sm-4 highest\">\n                    <text (onSaved)=\"savedNote($event)\"></text>\n                </div>\n            </div>\n        </div>\n\t",
             styleUrls: ['app/equal.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [user_web_service_1.UserWebService, notebooks_web_service_1.NotebooksWebService, notes_web_service_1.NotesWebService])
     ], AppComponent);
     return AppComponent;
 }());

@@ -50,6 +50,7 @@ export class NotesComponent {
     editedName: string = "";
     @Output() onChangedSelectedNote = new EventEmitter<Note>();
     @Output() onEdit = new EventEmitter<void>();
+    @Output() onCreateQuery = new EventEmitter<string>();
 
     constructor(private notesService: NotesWebService) {
     }
@@ -72,8 +73,9 @@ export class NotesComponent {
 
     create(): void {
         if (this.createdName != "") {
-            this.notesService.create(new Note());
-            this.onEdit.emit();
+            /*this.notesService.create(new Note(this.createdName))
+                .subscribe((resp:Response) => this.onEdit.emit());*/
+            this.onCreateQuery.emit(this.createdName);
         }
     }
 

@@ -4,6 +4,12 @@ import {Note} from "./note";
 import {NotebooksComponent} from "./notebooks.component";
 import {NotesComponent} from "./notes.component";
 import {TextComponent} from "./text.component";
+import {UserWebService} from "./user.web.service";
+import {NotebooksWebService} from "./notebooks.web.service";
+import {NotesWebService} from "./notes.web.service";
+import {Response} from '@angular/http';
+import {NotebookWithUser} from "./notebookWithUser";
+import {NoteWithNotebook} from "./noteWithNotebook";
 
 
 @Component({
@@ -19,7 +25,8 @@ import {TextComponent} from "./text.component";
     
                 <div class="col-sm-4">
                     <notes (onChangedSelectedNote)="changedSelectedNote($event)"
-                                                (onEdit)="editedNotes($event)"></notes>
+                                                (onEdit)="editedNotes($event)"
+                                                (onCreateQuery)="createNote($event)"></notes>
                 </div>
     
                 <div class="col-sm-4 highest">
@@ -43,6 +50,10 @@ export class AppComponent {
     @ViewChild(TextComponent)
     private textComponent: TextComponent;
 
+    constructor(private userService: UserWebService,
+                private notebooksService: NotebooksWebService,
+                private notesService: NotesWebService) {}
+
     changedSelectedNotebook(notebook) {
         this.selectedNotebook = notebook;
         this.notesComponent.uploadNotes(this.selectedNotebook);
@@ -53,6 +64,16 @@ export class AppComponent {
     changedSelectedNote(note) {
         this.selectedNote = note;
         this.textComponent.setText(this.selectedNote.noteText);
+    }
+
+    createNote(name) {
+            this.userService.getUser()
+                .subscribe((data:Response) => {
+                    let notebook = new NotebookWithUser(this.selectedNotebook.notebookName, data.json());
+                    let note = new NoteWithNotebook(name, notebook);
+                    this.notesService.create(note)
+                        .subscribe((resp:Response) => this.editedNotes());
+                });
     }
 
     editedNotes() {

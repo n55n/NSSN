@@ -45,9 +45,7 @@ var NotebooksComponent = (function () {
         if (this.createdName != "") {
             this.userService.getUser()
                 .subscribe(function (data) {
-                var user = data.json();
-                console.log(user);
-                _this.notebooksService.create(new notebookWithUser_1.NotebookWithUser(_this.createdName, user))
+                _this.notebooksService.create(new notebookWithUser_1.NotebookWithUser(_this.createdName, data.json()))
                     .subscribe(function (resp) { return _this.onEdit.emit(); });
             });
         }
