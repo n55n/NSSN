@@ -34,7 +34,8 @@ var AppComponent = (function () {
         this.notebooksComponent.getNotebooks();
     };
     AppComponent.prototype.savedNote = function (text) {
-        this.notesComponent.save(this.selectedNote.id, text);
+        this.selectedNote.noteText = text;
+        this.notesComponent.save(this.selectedNote);
     };
     __decorate([
         core_1.ViewChild(notebooks_component_1.NotebooksComponent), 
@@ -51,7 +52,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n\t\t<div class=\"container\">\n\t\t\t<div class=\"page-header\">\n                            <h2>Not so smart note \n                                <small>\n                                    main page\n                                    <ul class=\"list-inline\" align=\"right\">\n                                            <li>Username</li>\n                                            <li><a href=\"#\">Exit</a></li>\n                                    </ul>\n                                </small>\n                            </h2>\n\t\t\t</div>\n            <div class=\"row\">\n                <div class=\"col-sm-4\">\n                    <notebooks (onChanged)=\"changedSelectedNotebook($event)\"\n                                               (onEdit)=\"editedNotebooks($event)\"></notebooks>\n                </div>\n    \n                <div class=\"col-sm-4\">\n                    <notes (onChangedSelectedNote)=\"changedSelectedNote($event)\"\n                                           (onEdit)=\"editedNotes($event)\"></notes>\n                </div>\n    \n                <div class=\"col-sm-4 highest\">\n                    <text (onSaved)=\"savedNote($event)\"></text>\n                </div>\n            </div>\n        </div>\n\t",
+            template: "\n\t\t<div class=\"container\">\n\t\t\t<user></user>\n            <div class=\"row\">\n                <div class=\"col-sm-4\">\n                    <notebooks (onChanged)=\"changedSelectedNotebook($event)\"\n                                               (onEdit)=\"editedNotebooks($event)\"></notebooks>\n                </div>\n    \n                <div class=\"col-sm-4\">\n                    <notes (onChangedSelectedNote)=\"changedSelectedNote($event)\"\n                                                (onEdit)=\"editedNotes($event)\"></notes>\n                </div>\n    \n                <div class=\"col-sm-4 highest\">\n                    <text (onSaved)=\"savedNote($event)\"></text>\n                </div>\n            </div>\n        </div>\n\t",
             styleUrls: ['app/equal.css']
         }), 
         __metadata('design:paramtypes', [])

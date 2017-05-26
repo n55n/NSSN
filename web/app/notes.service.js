@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var mock_notes_1 = require('./mock-notes');
+var core_1 = require("@angular/core");
+var mock_notes_1 = require("./mock-notes");
 var NotesService = (function () {
     function NotesService() {
     }
@@ -17,11 +17,6 @@ var NotesService = (function () {
         var result = [];
         for (var _i = 0, NOTES_1 = mock_notes_1.NOTES; _i < NOTES_1.length; _i++) {
             var note = NOTES_1[_i];
-            for (var _a = 0, _b = notebook.noteSet; _a < _b.length; _a++) {
-                var id = _b[_a];
-                if (note.id == id)
-                    result.push(note);
-            }
         }
         return Promise.resolve(result);
     };

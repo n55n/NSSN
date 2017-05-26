@@ -11,13 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var notebooks_component_1 = require("./notebooks.component");
 var notes_component_1 = require("./notes.component");
 var text_component_1 = require("./text.component");
-var notebooks_service_1 = require("./notebooks.service");
-var notes_service_1 = require("./notes.service");
-var http_1 = require('@angular/http');
+var user_component_1 = require("./user.component");
+var user_web_service_1 = require("./user.web.service");
+var notebooks_web_service_1 = require("./notebooks.web.service");
+var notes_web_service_1 = require("./notes.web.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,14 +34,16 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 notebooks_component_1.NotebooksComponent,
                 notes_component_1.NotesComponent,
-                text_component_1.TextComponent
+                text_component_1.TextComponent,
+                user_component_1.UserComponent
             ],
             bootstrap: [
                 app_component_1.AppComponent
             ],
             providers: [
-                notebooks_service_1.NotebooksService,
-                notes_service_1.NotesService
+                user_web_service_1.UserWebService,
+                notebooks_web_service_1.NotebooksWebService,
+                notes_web_service_1.NotesWebService
             ]
         }), 
         __metadata('design:paramtypes', [])

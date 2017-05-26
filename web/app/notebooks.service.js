@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var mock_notebooks_1 = require('./mock-notebooks');
+var core_1 = require("@angular/core");
+var mock_notebooks_1 = require("./mock-notebooks");
 var NotebooksService = (function () {
     function NotebooksService() {
     }
@@ -17,11 +17,11 @@ var NotebooksService = (function () {
         return Promise.resolve(mock_notebooks_1.NOTEBOOKS);
     };
     NotebooksService.prototype.create = function (notebookName) {
-        var notebook = { id: mock_notebooks_1.NOTEBOOKS.length + 1, notebookName: notebookName, noteSet: [] };
-        mock_notebooks_1.NOTEBOOKS.push(notebook);
+        //let notebook: Notebook = {id: NOTEBOOKS.length + 1, notebookName: notebookName, noteSet: []};
+        //NOTEBOOKS.push(notebook);
     };
     NotebooksService.prototype.addNoteToNotebook = function (noteId, notebookId) {
-        mock_notebooks_1.NOTEBOOKS[notebookId].noteSet.push(noteId);
+        //NOTEBOOKS[notebookId].noteSet.push(noteId);
     };
     NotebooksService = __decorate([
         core_1.Injectable(), 

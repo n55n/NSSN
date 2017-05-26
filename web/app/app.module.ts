@@ -1,13 +1,17 @@
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+
 import {AppComponent} from "./app.component";
 import {NotebooksComponent} from "./notebooks.component";
 import {NotesComponent} from "./notes.component";
 import {TextComponent} from "./text.component";
-import {NotebooksService} from "./notebooks.service";
-import {NotesService} from "./notes.service";
-import { HttpModule }   from '@angular/http';
+import {UserComponent} from "./user.component";
+import {UserWebService} from "./user.web.service";
+import {NotebooksWebService} from "./notebooks.web.service";
+import {NotesWebService} from "./notes.web.service";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -18,14 +22,16 @@ import { HttpModule }   from '@angular/http';
         AppComponent,
         NotebooksComponent,
         NotesComponent,
-        TextComponent
+        TextComponent,
+        UserComponent
     ],
     bootstrap: [
         AppComponent
     ],
     providers: [
-        NotebooksService,
-        NotesService
+        UserWebService,
+        NotebooksWebService,
+        NotesWebService
     ]
 })
 export class AppModule {

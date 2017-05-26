@@ -16,15 +16,23 @@ var http_1 = require("@angular/http");
 var NotesWebService = (function () {
     function NotesWebService(http) {
         this.http = http;
+        this.url = '/rest/resources/';
     }
-    NotesWebService.prototype.getNote = function (id) {
-        return null;
+    NotesWebService.prototype.getNotes = function (notebook) {
+        return this.http.get(this.url + 'notebook/' + notebook.id + '/notes');
     };
-    NotesWebService.prototype.create = function (name) {
+    NotesWebService.prototype.create = function (note) {
+        var body = JSON.stringify(note);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        return this.http.post(this.url + 'note', body, { headers: headers });
     };
-    NotesWebService.prototype.edit = function (id, name) {
+    NotesWebService.prototype.edit = function (note) {
+        var body = JSON.stringify(note);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        return this.http.put(this.url + 'note/' + note.id, body, { headers: headers });
     };
     NotesWebService.prototype.remove = function (id) {
+        return this.http.delete(this.url + 'note/' + id);
     };
     NotesWebService = __decorate([
         core_1.Injectable(), 

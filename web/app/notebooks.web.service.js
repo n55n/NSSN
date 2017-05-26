@@ -13,18 +13,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/catch');
+require('rxjs/add/observable/throw');
 var NotebooksWebService = (function () {
     function NotebooksWebService(http) {
         this.http = http;
+        this.url = '/rest/resources/';
     }
-    NotebooksWebService.prototype.getNotebooks = function () {
-        return null;
+    NotebooksWebService.prototype.getNotebooks = function (userId) {
+        return this.http.get(this.url + 'user/' + userId + '/notebooks');
     };
-    NotebooksWebService.prototype.create = function (name) {
+    NotebooksWebService.prototype.create = function (notebook) {
+        /*let result;
+        this.userService.getUser()
+            .subscribe((resp:Response) => {
+                const body  = JSON.stringify(notebook);
+                let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
+                result = this.http.post(this.url + 'user/' + resp.json().id + '/notebooks', body, {headers: headers});
+            });
+        return result;*/
+        var body = JSON.stringify(notebook);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        return this.http.post(this.url + 'notebook', body, { headers: headers });
     };
-    NotebooksWebService.prototype.edit = function (id, name) {
+    NotebooksWebService.prototype.edit = function (notebook) {
+        var body = JSON.stringify(notebook);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        return this.http.put(this.url + 'notebook/' + notebook.id, body, { headers: headers });
     };
     NotebooksWebService.prototype.remove = function (id) {
+        return this.http.delete(this.url + 'notebook/' + id);
     };
     NotebooksWebService = __decorate([
         core_1.Injectable(), 

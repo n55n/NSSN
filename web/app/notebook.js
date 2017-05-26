@@ -1,6 +1,7 @@
 "use strict";
 var Notebook = (function () {
-    function Notebook() {
+    function Notebook(name) {
+        this.notebookName = name;
     }
     return Notebook;
 }());

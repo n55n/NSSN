@@ -10,17 +10,7 @@ import {TextComponent} from "./text.component";
     selector: 'my-app',
     template: `
 		<div class="container">
-			<div class="page-header">
-                            <h2>Not so smart note 
-                                <small>
-                                    main page
-                                    <ul class="list-inline" align="right">
-                                            <li>Username</li>
-                                            <li><a href="#">Exit</a></li>
-                                    </ul>
-                                </small>
-                            </h2>
-			</div>
+			<user></user>
             <div class="row">
                 <div class="col-sm-4">
                     <notebooks (onChanged)="changedSelectedNotebook($event)"
@@ -29,7 +19,7 @@ import {TextComponent} from "./text.component";
     
                 <div class="col-sm-4">
                     <notes (onChangedSelectedNote)="changedSelectedNote($event)"
-                                           (onEdit)="editedNotes($event)"></notes>
+                                                (onEdit)="editedNotes($event)"></notes>
                 </div>
     
                 <div class="col-sm-4 highest">
@@ -74,6 +64,7 @@ export class AppComponent {
     }
 
     savedNote(text: string) {
-        this.notesComponent.save(this.selectedNote.id, text);
+        this.selectedNote.noteText = text;
+        this.notesComponent.save(this.selectedNote);
     }
 }

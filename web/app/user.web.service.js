@@ -13,12 +13,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+require('rxjs/add/operator/map');
 var UserWebService = (function () {
     function UserWebService(http) {
         this.http = http;
     }
     UserWebService.prototype.getUser = function () {
-        return null;
+        return this.http.get('/rest/resources/user');
+    };
+    UserWebService.prototype.logout = function () {
+        return this.http.get('/rest/logout');
     };
     UserWebService = __decorate([
         core_1.Injectable(), 

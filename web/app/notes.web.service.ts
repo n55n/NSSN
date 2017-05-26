@@ -2,27 +2,34 @@
  * Created by Марат on 21.04.2017.
  */
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, Headers} from "@angular/http";
 import {Note} from "./note";
+import {Notebook} from "./notebook";
 
 @Injectable()
 export class NotesWebService {
+    private url = '/rest/resources/';
+
     constructor(private http: Http) {
     }
 
-    getNote(id: number): Promise<Note> {
-        return null;
+    getNotes(notebook: Notebook) {
+        return this.http.get(this.url + 'notebook/' + notebook.id + '/notes');
     }
 
-    create(name: string) {
-
+    create(note: Note) {
+        const body  = JSON.stringify(note);
+        let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
+        return this.http.post(this.url + 'note', body, {headers: headers});
     }
 
-    edit(id: number, name: string) {
-
+    edit(note: Note) {
+        const body  = JSON.stringify(note);
+        let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
+        return this.http.put(this.url + 'note/' + note.id, body, {headers: headers});
     }
 
     remove(id: number) {
-
+        return this.http.delete(this.url + 'note/' + id);
     }
 }
