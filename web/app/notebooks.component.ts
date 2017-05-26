@@ -3,6 +3,7 @@ import {Notebook} from "./notebook";
 import {NotebooksWebService} from "./notebooks.web.service";
 import {Response} from '@angular/http';
 import {UserWebService} from "./user.web.service";
+import {NotebookWithUser} from "./notebookWithUser";
 
 @Component({
     selector: 'notebooks',
@@ -80,8 +81,14 @@ export class NotebooksComponent implements OnInit {
 
     create(): void {
         if (this.createdName != "") {
-            this.notebooksService.create(new Notebook(name))
-                .subscribe((resp:Response) => this.onEdit.emit());
+            this.userService.getUser()
+                .subscribe((data:Response) => {
+                    let user = data.json();
+                    let notebook = new NotebookWithUser(this.createdName, user);
+                    console.log(notebook);
+                    this.notebooksService.create(new NotebookWithUser(this.createdName, user))
+                        .subscribe((resp:Response) => this.onEdit.emit());
+                });
         }
     }
 

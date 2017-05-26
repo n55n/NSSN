@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var notebook_1 = require("./notebook");
 var notebooks_web_service_1 = require("./notebooks.web.service");
 var user_web_service_1 = require("./user.web.service");
+var notebookWithUser_1 = require("./notebookWithUser");
 var NotebooksComponent = (function () {
     function NotebooksComponent(notebooksService, userService) {
         this.notebooksService = notebooksService;
@@ -43,8 +43,13 @@ var NotebooksComponent = (function () {
     NotebooksComponent.prototype.create = function () {
         var _this = this;
         if (this.createdName != "") {
-            this.notebooksService.create(new notebook_1.Notebook(name))
-                .subscribe(function (resp) { return _this.onEdit.emit(); });
+            this.userService.getUser()
+                .subscribe(function (data) {
+                var user = data.json();
+                console.log(user);
+                _this.notebooksService.create(new notebookWithUser_1.NotebookWithUser(_this.createdName, user))
+                    .subscribe(function (resp) { return _this.onEdit.emit(); });
+            });
         }
     };
     NotebooksComponent.prototype.delete = function () {

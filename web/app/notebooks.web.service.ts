@@ -8,6 +8,7 @@ import {Notebook} from "./notebook";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {NotebookWithUser} from "./notebookWithUser";
 
 @Injectable()
 export class NotebooksWebService {
@@ -20,7 +21,7 @@ export class NotebooksWebService {
         return this.http.get(this.url + 'user/' + userId + '/notebooks');
     }
 
-    create(notebook: Notebook) {
+    create(notebook: NotebookWithUser) {
         /*let result;
         this.userService.getUser()
             .subscribe((resp:Response) => {
