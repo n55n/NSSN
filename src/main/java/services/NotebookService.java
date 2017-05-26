@@ -33,7 +33,7 @@ public class NotebookService {
     @Consumes("application/json")
     public Response createNotebook(Notebook notebook) throws IOException {
         dbHelper.write(notebook);
-        return Response.created(URI.create("/notebook/" + notebook.getId())).build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     /*

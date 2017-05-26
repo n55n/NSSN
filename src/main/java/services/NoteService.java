@@ -30,7 +30,7 @@ public class NoteService {
     @Consumes("application/json")
     public Response createNote(Note note) throws IOException {
         dbHelper.write(note);
-        return Response.created(URI.create("/note/" + note.getId())).build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @GET

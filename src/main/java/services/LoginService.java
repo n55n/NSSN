@@ -44,6 +44,20 @@ public class LoginService {
         }
         return Response.status(Response.Status.UNAUTHORIZED).build();
     }
+//
+//    @POST
+//    @Produces("application/json")
+//    @Path("/login")
+//    public Response login(@Context HttpServletRequest request, @Context HttpServletResponse response) {
+//        HttpSession session = request.getSession();
+//        session.setAttribute("userId", 1);
+//        try {
+//            response.sendRedirect("/index.html");
+//        } catch (IOException e) {
+//        }
+//        return Response.status(Response.Status.OK).build();
+//
+//    }
 
     /*
     * создание нового пользователя
@@ -52,12 +66,16 @@ public class LoginService {
     @POST
     @Produces("application/json")
     @Path("/create")
-    public Response createUser(@FormParam("username") String username, @FormParam("password") String password) {
+    public Response createUser(@Context HttpServletResponse response, @FormParam("username") String username, @FormParam("password") String password) {
         DBHelper<User> dbHelper = new DBHelper<>(User.class);
         User user = new User();
         user.setUsername(username);
         user.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
         dbHelper.write(user);
+        try {
+            response.sendRedirect("/login.html");
+        } catch (Exception ignored) {
+        }
         return Response.status(Response.Status.CREATED).build();
     }
 
