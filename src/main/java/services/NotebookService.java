@@ -2,22 +2,19 @@ package services;
 
 import models.Note;
 import models.Notebook;
+import models.TNotebook;
+import models.User;
 import util.DBHelper;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.net.URI;
 import java.util.Collections;
 import java.util.Set;
 
-import static util.ServiceUtil.*;
+import static util.ServiceUtil.isAccessible;
 
 /**
  * Created by denis on 16.02.17.
@@ -26,12 +23,16 @@ import static util.ServiceUtil.*;
 public class NotebookService {
 
     private DBHelper<Notebook> dbHelper = new DBHelper<>(Notebook.class);
+    private DBHelper<User> userDBHelper = new DBHelper<>(User.class);
 
     /*
     * создание блокнота*/
     @POST
     @Consumes("application/json")
-    public Response createNotebook(Notebook notebook) throws IOException {
+    public Response createNotebook(@Context HttpServletRequest request, TNotebook tNotebook) throws IOException {
+        Notebook notebook = new Notebook();
+        notebook.setNotebookName(tNotebook.getName());
+        notebook.setUser(userDBHelper.read((int) request.getSession().getAttribute("userId")));
         dbHelper.write(notebook);
         return Response.status(Response.Status.CREATED).build();
     }
@@ -55,10 +56,10 @@ public class NotebookService {
     @PUT
     @Consumes("application/json")
     @Path("{id}")
-    public void updateNotebook(@Context HttpServletRequest request, @PathParam("id") int id, Notebook update) throws IOException {
+    public void updateNotebook(@Context HttpServletRequest request, @PathParam("id") int id, TNotebook update) throws IOException {
         Notebook notebook = dbHelper.read(id);
         if (isAccessible(request, notebook.getUser().getId())) {
-            notebook.setNotebookName(update.getNotebookName());
+            notebook.setNotebookName(update.getName());
             dbHelper.write(notebook);
         }
     }

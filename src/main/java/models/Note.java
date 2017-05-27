@@ -12,7 +12,7 @@ import java.util.Set;
  * Created by denis on 16.02.17.
  */
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "notebook", "set"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "notebook", "handler", "set"})
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")

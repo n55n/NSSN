@@ -11,11 +11,11 @@ import java.util.Set;
  * Created by denis on 16.02.17.
  */
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "user", "noteSet", "set"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "user", "handler", "noteSet", "set"})
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class Notebook implements GetIDable{
+public class Notebook implements GetIDable {
     private int notebookId;
     private String notebookName;
     @JsonBackReference
