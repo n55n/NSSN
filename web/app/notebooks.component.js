@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var notebooks_web_service_1 = require("./notebooks.web.service");
 var user_web_service_1 = require("./user.web.service");
-var notebookWithUser_1 = require("./notebookWithUser");
 var NotebooksComponent = (function () {
     function NotebooksComponent(notebooksService, userService) {
         this.notebooksService = notebooksService;
@@ -43,11 +42,8 @@ var NotebooksComponent = (function () {
     NotebooksComponent.prototype.create = function () {
         var _this = this;
         if (this.createdName != "") {
-            this.userService.getUser()
-                .subscribe(function (data) {
-                _this.notebooksService.create(new notebookWithUser_1.NotebookWithUser(_this.createdName, data.json()))
-                    .subscribe(function (resp) { return _this.onEdit.emit(); });
-            });
+            this.notebooksService.create(this.createdName)
+                .subscribe(function (resp) { return _this.onEdit.emit(); });
         }
     };
     NotebooksComponent.prototype.delete = function () {

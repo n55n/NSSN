@@ -29,7 +29,7 @@ public class TNote {
     public int getId() {
         return id;
     }
-
+    @JsonProperty("noteId")
     public void setId(int id) {
         this.id = id;
     }

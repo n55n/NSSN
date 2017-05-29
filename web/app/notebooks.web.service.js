@@ -24,16 +24,8 @@ var NotebooksWebService = (function () {
     NotebooksWebService.prototype.getNotebooks = function (userId) {
         return this.http.get(this.url + 'user/' + userId + '/notebooks');
     };
-    NotebooksWebService.prototype.create = function (notebook) {
-        /*let result;
-        this.userService.getUser()
-            .subscribe((resp:Response) => {
-                const body  = JSON.stringify(notebook);
-                let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
-                result = this.http.post(this.url + 'user/' + resp.json().id + '/notebooks', body, {headers: headers});
-            });
-        return result;*/
-        var body = JSON.stringify(notebook);
+    NotebooksWebService.prototype.create = function (notebookName) {
+        var body = JSON.stringify(notebookName);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         return this.http.post(this.url + 'notebook', body, { headers: headers });
     };
