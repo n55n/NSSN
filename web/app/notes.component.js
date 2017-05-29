@@ -36,8 +36,6 @@ var NotesComponent = (function () {
     };
     NotesComponent.prototype.create = function () {
         if (this.createdName != "") {
-            /*this.notesService.create(new Note(this.createdName))
-                .subscribe((resp:Response) => this.onEdit.emit());*/
             this.onCreateQuery.emit(this.createdName);
         }
     };

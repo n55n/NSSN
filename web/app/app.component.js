@@ -15,7 +15,6 @@ var text_component_1 = require("./text.component");
 var user_web_service_1 = require("./user.web.service");
 var notebooks_web_service_1 = require("./notebooks.web.service");
 var notes_web_service_1 = require("./notes.web.service");
-var notebookWithUser_1 = require("./notebookWithUser");
 var noteWithNotebook_1 = require("./noteWithNotebook");
 var AppComponent = (function () {
     function AppComponent(userService, notebooksService, notesService) {
@@ -37,13 +36,9 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.createNote = function (name) {
         var _this = this;
-        this.userService.getUser()
-            .subscribe(function (data) {
-            var notebook = new notebookWithUser_1.NotebookWithUser(_this.selectedNotebook.notebookName, data.json());
-            var note = new noteWithNotebook_1.NoteWithNotebook(name, notebook);
-            _this.notesService.create(note)
-                .subscribe(function (resp) { return _this.editedNotes(); });
-        });
+        var note = new noteWithNotebook_1.NoteWithNotebook(name, this.selectedNotebook.id);
+        this.notesService.create(note)
+            .subscribe(function (resp) { return _this.editedNotes(); });
     };
     AppComponent.prototype.editedNotes = function () {
         this.notesComponent.uploadNotes(this.selectedNotebook);

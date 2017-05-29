@@ -2,6 +2,7 @@
 var Note = (function () {
     function Note(name) {
         this.noteName = name;
+        this.noteText = "";
     }
     return Note;
 }());
