@@ -53,12 +53,15 @@ public class NoteService {
     @PUT
     @Consumes("application/json")
     @Path("{id}")
-    public void updateNote(@Context HttpServletRequest request, @PathParam("id") int id, TNote update) throws IOException {
+    public void updateNote(@Context HttpServletRequest request, @PathParam("id") int id, Note update) throws IOException {
         Note note = dbHelper.read(id);
         if (isAccessible(request, note.getNotebook().getUser().getId())) {
-            note.setNoteName(update.getName());
+            note.setNoteText(update.getNoteText());
+            note.setNoteName(update.getNoteName());
             note.setLastEdited(new Timestamp(System.nanoTime()));
-            note.setNoteText(update.getText());
+           /* note.setNoteName(update.getName());
+            note.setLastEdited(new Timestamp(System.nanoTime()));
+            note.setNoteText(update.getText());*/
             dbHelper.write(note);
         }
     }

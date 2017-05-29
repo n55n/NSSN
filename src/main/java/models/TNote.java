@@ -6,37 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by denis on 27.05.17.
  */
 public class TNote {
-
+    @JsonProperty("noteName")
     private String name;
+    @JsonProperty("id")
     private int id;
+    @JsonProperty("notebook")
     private int notebookId;
+    @JsonProperty("noteText")
     private String text;
 
-    public TNote(@JsonProperty("id") int id, @JsonProperty("noteName") String name,
-                 @JsonProperty("notebook") int notebookId, @JsonProperty("noteText") String text) {
-        this.name = name;
-        this.notebookId = notebookId;
-        this.text = text;
-        this.id = id;
+    public TNote() {
+
     }
-
-    public TNote(@JsonProperty("id") int id, @JsonProperty("noteName") String name,
-                 @JsonProperty("noteText") String text) {
-        this.name = name;
-        this.text = text;
-        this.id = id;
-    }
-
-
-    public TNote(@JsonProperty("noteName") String name,
-                 @JsonProperty("notebook") int notebookId, @JsonProperty("noteText") String text) {
-        this.name = name;
-        this.notebookId = notebookId;
-        this.text = text;
-    }
-
-
-
 
     public String getName() {
         return name;
@@ -44,14 +25,6 @@ public class TNote {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getNotebookId() {
