@@ -67,13 +67,9 @@ export class AppComponent {
     }
 
     createNote(name) {
-            this.userService.getUser()
-                .subscribe((data:Response) => {
-                    let notebook = new NotebookWithUser(this.selectedNotebook.notebookName, data.json());
-                    let note = new NoteWithNotebook(name, notebook);
-                    this.notesService.create(note)
-                        .subscribe((resp:Response) => this.editedNotes());
-                });
+        let note = new NoteWithNotebook(name, this.selectedNotebook.id);
+        this.notesService.create(note)
+            .subscribe((resp:Response) => this.editedNotes());
     }
 
     editedNotes() {

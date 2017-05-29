@@ -1,11 +1,10 @@
-import {NotebookWithUser} from "./notebookWithUser";
 export class NoteWithNotebook {
-    constructor(name: string, notebook: NotebookWithUser) {
+    constructor(name: string, notebookId: number) {
         this.noteName = name;
-
+        this.notebook = notebookId;
+        this.noteText = "";
     }
-    id: number;
     noteName: string;
     noteText: string;
-    notebook: NotebookWithUser;
+    notebook: number;
 }
