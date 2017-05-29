@@ -21,17 +21,8 @@ export class NotebooksWebService {
         return this.http.get(this.url + 'user/' + userId + '/notebooks');
     }
 
-    create(notebook: NotebookWithUser) {
-        /*let result;
-        this.userService.getUser()
-            .subscribe((resp:Response) => {
-                const body  = JSON.stringify(notebook);
-                let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
-                result = this.http.post(this.url + 'user/' + resp.json().id + '/notebooks', body, {headers: headers});
-            });
-        return result;*/
-
-        const body  = JSON.stringify(notebook);
+    create(notebookName: string) {
+        const body  = JSON.stringify(notebookName);
         let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
         return this.http.post(this.url + 'notebook', body, {headers: headers});
     }

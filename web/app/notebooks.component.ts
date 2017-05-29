@@ -81,11 +81,9 @@ export class NotebooksComponent implements OnInit {
 
     create(): void {
         if (this.createdName != "") {
-            this.userService.getUser()
-                .subscribe((data:Response) => {
-                    this.notebooksService.create(new NotebookWithUser(this.createdName, data.json()))
-                        .subscribe((resp:Response) => this.onEdit.emit());
-                });
+            this.notebooksService.create(this.createdName)
+                .subscribe((resp:Response) => this.onEdit.emit());
+
         }
     }
 
