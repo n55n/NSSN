@@ -27,7 +27,7 @@ export class NotebooksWebService {
     }
 
     edit(notebook: Notebook) {
-        const body  = JSON.stringify(notebook);
+        const body  = JSON.stringify(notebook.notebookName);
         let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
         return this.http.put(this.url + 'notebook/' + notebook.id, body, {headers: headers});
     }
