@@ -8,7 +8,6 @@ import {UserWebService} from "./user.web.service";
 import {NotebooksWebService} from "./notebooks.web.service";
 import {NotesWebService} from "./notes.web.service";
 import {Response} from '@angular/http';
-import {NotebookWithUser} from "./notebookWithUser";
 import {NoteWithNotebook} from "./noteWithNotebook";
 
 

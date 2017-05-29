@@ -3,7 +3,6 @@ import {Notebook} from "./notebook";
 import {NotebooksWebService} from "./notebooks.web.service";
 import {Response} from '@angular/http';
 import {UserWebService} from "./user.web.service";
-import {NotebookWithUser} from "./notebookWithUser";
 
 @Component({
     selector: 'notebooks',
