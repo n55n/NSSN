@@ -8,7 +8,6 @@ import {Notebook} from "./notebook";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import {NotebookWithUser} from "./notebookWithUser";
 
 @Injectable()
 export class NotebooksWebService {
@@ -28,7 +27,7 @@ export class NotebooksWebService {
     }
 
     edit(notebook: Notebook) {
-        const body  = JSON.stringify(notebook);
+        const body  = JSON.stringify(notebook.notebookName);
         let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8'});
         return this.http.put(this.url + 'notebook/' + notebook.id, body, {headers: headers});
     }
