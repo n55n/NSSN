@@ -12,7 +12,7 @@ public class TNote {
     private int notebookId;
     private String text;
 
-    public TNote(@JsonProperty("noteId") int id, @JsonProperty("noteName") String name,
+    public TNote(@JsonProperty("id") int id, @JsonProperty("noteName") String name,
                  @JsonProperty("notebook") int notebookId, @JsonProperty("noteText") String text) {
         this.name = name;
         this.notebookId = notebookId;
