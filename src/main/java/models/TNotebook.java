@@ -14,7 +14,7 @@ public class TNotebook {
         this.id = id;
     }
 
-    public TNotebook(@JsonProperty("notebookName") String name) {
+    public TNotebook(String name) {
         this.name = name;
     }
 
