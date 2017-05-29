@@ -10,7 +10,6 @@ public class TNote {
     private String name;
     private int id;
     private int notebookId;
-
     private String text;
 
     public TNote(@JsonProperty("noteId") int id, @JsonProperty("noteName") String name,
@@ -20,6 +19,16 @@ public class TNote {
         this.text = text;
         this.id = id;
     }
+
+    public TNote(@JsonProperty("noteName") String name,
+                 @JsonProperty("notebook") int notebookId, @JsonProperty("noteText") String text) {
+        this.name = name;
+        this.notebookId = notebookId;
+        this.text = text;
+    }
+
+
+
 
     public String getName() {
         return name;
