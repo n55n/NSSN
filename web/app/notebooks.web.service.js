@@ -30,7 +30,7 @@ var NotebooksWebService = (function () {
         return this.http.post(this.url + 'notebook', body, { headers: headers });
     };
     NotebooksWebService.prototype.edit = function (notebook) {
-        var body = JSON.stringify(notebook);
+        var body = JSON.stringify(notebook.notebookName);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         return this.http.put(this.url + 'notebook/' + notebook.id, body, { headers: headers });
     };

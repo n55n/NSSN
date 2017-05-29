@@ -20,6 +20,14 @@ public class TNote {
         this.id = id;
     }
 
+    public TNote(@JsonProperty("id") int id, @JsonProperty("noteName") String name,
+                 @JsonProperty("noteText") String text) {
+        this.name = name;
+        this.text = text;
+        this.id = id;
+    }
+
+
     public TNote(@JsonProperty("noteName") String name,
                  @JsonProperty("notebook") int notebookId, @JsonProperty("noteText") String text) {
         this.name = name;
